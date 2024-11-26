@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://p8f3ficw4ccd"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_v7tcb"]
+[ext_resource type="Texture2D" uid="uid://c632p0kesesee" path="res://menu_temporario.png" id="2_648m3"]
+[ext_resource type="PackedScene" uid="uid://bptoxy4tef06l" path="res://fade_transition.tscn" id="3_8e4oq"]
+[ext_resource type="FontFile" uid="uid://by3kquboighkq" path="res://fonts/Gothica-Bold.ttf" id="4_w6j1v"]
+[ext_resource type="FontFile" uid="uid://cn2jvalmag3bf" path="res://fonts/Gothicha.ttf" id="5_crcsr"]
+
+[node name="Main menu" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_v7tcb")
+
+[node name="Button_manager" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Start" type="Button" parent="Button_manager"]
+process_mode = 3
+light_mask = 0
+layout_mode = 0
+offset_left = 494.0
+offset_top = 301.0
+offset_right = 688.0
+offset_bottom = 349.0
+theme_override_fonts/font = ExtResource("4_w6j1v")
+theme_override_font_sizes/font_size = 30
+text = "Start"
+metadata/_edit_use_anchors_ = true
+
+[node name="Quit" type="Button" parent="Button_manager"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 4.012
+anchor_right = 4.012
+offset_left = 334.52
+offset_top = 384.0
+offset_right = 529.52
+offset_bottom = 434.0
+theme_override_fonts/font = ExtResource("4_w6j1v")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuTemporario" type="Sprite2D" parent="."]
+process_mode = 3
+show_behind_parent = true
+position = Vector2(575, 333)
+scale = Vector2(0.563965, 0.345703)
+texture = ExtResource("2_648m3")
+
+[node name="Fade_transition" parent="." instance=ExtResource("3_8e4oq")]
+process_mode = 3
+visible = false
+offset_left = -24.0
+offset_top = -7.0
+offset_right = 1158.0
+offset_bottom = 672.0
+
+[node name="fade_timer" type="Timer" parent="Fade_transition"]
+process_mode = 3
+
+[node name="Label" type="Label" parent="."]
+offset_left = 408.0
+offset_top = 195.0
+offset_right = 769.0
+offset_bottom = 282.0
+theme_override_colors/font_color = Color(0.592448, 8.90419e-07, 3.85046e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_crcsr")
+theme_override_font_sizes/font_size = 70
+text = "CARMILLA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button_manager/Quit" to="." method="_on_quit_pressed"]
