@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c632p0kesesee"
-path="res://.godot/imported/menu_temporario.png-6c565602322eac7d0056d38e2b9322e5.ctex"
+uid="uid://dron0tve4uayt"
+path="res://.godot/imported/Take Hit.png-6a4899542476e8e16297fe548b40a061.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://menu_temporario.png"
-dest_files=["res://.godot/imported/menu_temporario.png-6c565602322eac7d0056d38e2b9322e5.ctex"]
+source_file="res://sprites/Skeleton/Take Hit.png"
+dest_files=["res://.godot/imported/Take Hit.png-6a4899542476e8e16297fe548b40a061.ctex"]
 
 [params]
 
