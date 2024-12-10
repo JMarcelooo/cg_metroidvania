@@ -2,36 +2,52 @@ extends CharacterBody2D
 
 @onready var healthbar = $CanvasLayer/Healthbar
 
-
+@onready var attack_sound = $AudioStreamPlayer2D
 var input
 @export var speed = 100.0
 @export var gravity = 10
+var is_dead = false
+var current_health = player_data.life
 
 #Variável para pular
 var jump_count = 0
-@export var max_jump = 2
+var max_jump = player_data.max_jump
 @export var jump_force = 500
 
 #MÁQUINA DE ESTADO PARA O ATACK
 var current_state = player_states.MOVE
-enum player_states {MOVE, SWORD, DEAD}
+enum player_states {MOVE, SWORD, DEAD, DAMAGE, HEAL}
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$sword/atack_collider.disabled = true
 	var health = player_data.life
-	healthbar.init_health(health)
+	healthbar.init_health(current_health)
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
+	if player_data.life <= 0:
+		current_state = player_states.DEAD
+	
+	if player_data.life < current_health:
+		current_state = player_states.DAMAGE
+	if player_data.life > current_health:
+		current_state = player_states.HEAL
+	
 	match current_state:
 		player_states.MOVE:
 			movement(delta)
 		player_states.SWORD:
 			sword(delta)
+		player_states.DEAD:
+			dead(delta)
+		player_states.DAMAGE:
+			damage(delta)
+		player_states.HEAL:
+			heal()
 
 
 func movement(delta):
@@ -93,11 +109,19 @@ func movement(delta):
 	else: gravity_force()
 	
 	if Input.is_action_just_pressed("ui_sword"):
+		attack_sound.play()
 		current_state = player_states.SWORD
 	
 	gravity_force()
 	move_and_slide()
 	
+
+func heal():
+	current_state = player_states.MOVE
+	if player_data.life > 3:
+		player_data.life = 3
+	current_health = player_data.life
+	$CanvasLayer/Healthbar._set_health(player_data.life)
 
 func input_movement(delta):
 	input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -127,6 +151,25 @@ func gravity_force():
 func sword(delta):
 	$AnimationPlayer.play("Sword")
 	input_movement(delta)
+
+func dead(delta):
+	if not is_dead:
+		is_dead = true
+		print("Player morreu")
+		max_jump = 1
+		player_data.max_jump = 1
+		$AnimationPlayer.play("Dead")
+		await $AnimationPlayer.animation_finished
+		current_state = player_states.MOVE
+		player_data.life = 3
+		get_tree().change_scene_to_file("res://components/tela_game_over.tscn")
+
+func damage(delta):
+	$AnimationPlayer.play("Damage")
+	current_health = player_data.life
+	await $AnimationPlayer.animation_finished
+	$CanvasLayer/Healthbar._set_health(player_data.life)
+	current_state = player_states.MOVE
 
 func reset_state():
 	current_state = player_states.MOVE

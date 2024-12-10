@@ -6,6 +6,9 @@ const JUMP_FORCE = -400
 @export var gravity = 30
 var facing_right = true
 var is_attacking = false
+var was_attacked = false
+@onready var attack_sound = $attack_sound
+@onready var dying_sound = $dying_sound
 
 
 func _ready() -> void:
@@ -13,13 +16,18 @@ func _ready() -> void:
 	flip_timer.start(time)
 	
 func attack_player():
-	# Executa ataque apenas se não estiver atacando
+	attack_sound.play()
 	if not is_attacking:
 		SPEED = 0
-		
 		$AnimationPlayer.play("atack")
 		
+		if was_attacked:
+			dying_sound.play()
+			$AnimationPlayer.play("Dead")
+			await $AnimationPlayer.animation_finished
+		
 		await $AnimationPlayer.animation_finished
+		
 		if facing_right:
 			SPEED = abs(SPEED)
 		else:
@@ -34,6 +42,14 @@ func attack_player():
 
 
 func _physics_process(delta: float) -> void:
+	if was_attacked:
+		$AnimationPlayer.play("Dead")
+		dying_sound.play()
+		SPEED = 0
+		await $AnimationPlayer.animation_finished
+		queue_free()
+	
+	
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		$AnimationPlayer.play("Walk")
@@ -47,6 +63,7 @@ func _physics_process(delta: float) -> void:
 		if collider and collider.name == "Player":
 			attack_player()
 		
+	
 
 
 func flip():
@@ -65,6 +82,8 @@ func _on_timer_timeout() -> void:
 
 func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.name == "sword":
+		was_attacked = true
+		dying_sound.play()
 		$AnimationPlayer.play("Dead")
 		print("ataque")
 		SPEED = 0
@@ -74,8 +93,8 @@ func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 
 func _on_atack_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		player_data.life -= 1
+		player_data.life -= 0.5
+		var animation = body.get_node("AnimationPlayer")
 		print(player_data.life)
-		if player_data.life == 0:
-			get_tree().reload_current_scene()
+		
 	

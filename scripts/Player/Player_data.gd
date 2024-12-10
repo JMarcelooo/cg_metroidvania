@@ -2,7 +2,8 @@ extends Node2D
 class_name player_data
 
 static var coin = 0
-static var life = 6
+static var life = 3
+static var max_jump = 1
 
 
 

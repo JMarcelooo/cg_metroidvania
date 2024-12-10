@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bkpe430ay8jo6"
+path="res://.godot/imported/Devil's Trill Sonata - Main Theme'.mp3-5f198c52d88698574edc412645a972ad.mp3str"
+
+[deps]
+
+source_file="res://audio/soundtrack/Devil's Trill Sonata - Main Theme'.mp3"
+dest_files=["res://.godot/imported/Devil's Trill Sonata - Main Theme'.mp3-5f198c52d88698574edc412645a972ad.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

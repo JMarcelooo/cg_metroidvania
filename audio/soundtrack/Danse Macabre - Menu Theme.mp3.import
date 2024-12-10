@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ddtnkqs5emb2t"
+path="res://.godot/imported/Danse Macabre - Menu Theme.mp3-107a6f7318a367125e02d81d1fe9b453.mp3str"
+
+[deps]
+
+source_file="res://audio/soundtrack/Danse Macabre - Menu Theme.mp3"
+dest_files=["res://.godot/imported/Danse Macabre - Menu Theme.mp3-107a6f7318a367125e02d81d1fe9b453.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

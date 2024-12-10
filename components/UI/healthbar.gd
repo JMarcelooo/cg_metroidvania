@@ -2,9 +2,10 @@ extends ProgressBar
 
 @onready var timer = $Timer
 @onready var damage_bar = $damagebar
+var health = player_data.life
 
-var health = 0 : set = _set_health
 
+	
 
 func _set_health(new_health):
 	var prev_health = player_data.life

@@ -1,0 +1,245 @@
+[gd_scene load_steps=17 format=3 uid="uid://wjg24b6crwpn"]
+
+[ext_resource type="Texture2D" uid="uid://dy1k0thwg8lh1" path="res://sprites/Sprites/Enemies/Carmilla/carmilla_sprite.png" id="1_8cdmr"]
+[ext_resource type="Script" path="res://scripts/Enemies/carmilla.gd" id="1_os2ys"]
+[ext_resource type="PackedScene" uid="uid://ctvo0hpxv37ja" path="res://components/UI/healthbar.tscn" id="2_tx13x"]
+[ext_resource type="AudioStream" uid="uid://dyddo5owe2pna" path="res://audio/sound_effects/skeleton_dying.mp3" id="3_11tmh"]
+[ext_resource type="AudioStream" uid="uid://dy1wrwcwqs2r2" path="res://audio/sound_effects/skeleton_attack.mp3" id="4_gggks"]
+[ext_resource type="FontFile" uid="uid://by3kquboighkq" path="res://fonts/Gothica-Bold.ttf" id="6_ffbh1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_675p6"]
+size = Vector2(14.1176, 26.2858)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvpqg"]
+size = Vector2(14.1176, 26.2858)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysnb4"]
+size = Vector2(13.7437, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb78a"]
+size = Vector2(280, 36)
+
+[sub_resource type="Animation" id="Animation_e85uu"]
+resource_name = "Dead"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43]
+}
+
+[sub_resource type="Animation" id="Animation_d46v4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Atack/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_rhxoq"]
+resource_name = "Walk"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Atack/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fvwnh"]
+resource_name = "atack"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 30, 18, 19, 17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Atack/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.4, 0.65, 0.7, 0.85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_xxxa7"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wbtlb"]
+_data = {
+"Dead": SubResource("Animation_e85uu"),
+"RESET": SubResource("Animation_d46v4"),
+"Walk": SubResource("Animation_rhxoq"),
+"atack": SubResource("Animation_fvwnh"),
+"idle": SubResource("Animation_xxxa7")
+}
+
+[node name="Carmilla" type="CharacterBody2D"]
+scale = Vector2(1.7, 2)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_os2ys")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.588235, -28)
+texture = ExtResource("1_8cdmr")
+hframes = 8
+vframes = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.588236, -18.8571)
+shape = SubResource("RectangleShape2D_675p6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 44
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.588235, -18.8571)
+shape = SubResource("RectangleShape2D_vvpqg")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Atack" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Atack"]
+position = Vector2(15.4811, -18.5)
+shape = SubResource("RectangleShape2D_ysnb4")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(1, -10)
+target_position = Vector2(19, 0)
+
+[node name="dying_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_11tmh")
+volume_db = -4.57
+
+[node name="attack_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_gggks")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("2_tx13x")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -421.0
+offset_top = -80.0
+offset_right = 303.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -415.0
+offset_top = -120.0
+offset_right = 45.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_ffbh1")
+theme_override_font_sizes/font_size = 30
+text = "Carmilla"
+
+[node name="bar_show_collider" type="Area2D" parent="."]
+position = Vector2(98.8235, 36.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar_show_collider"]
+position = Vector2(-92, -55.5)
+shape = SubResource("RectangleShape2D_xb78a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wbtlb")
+}
+autoplay = "idle"
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Atack" to="." method="_on_atack_body_entered"]
+[connection signal="body_shape_entered" from="Atack" to="." method="_on_atack_body_shape_entered"]
+[connection signal="body_entered" from="bar_show_collider" to="." method="_on_bar_show_collider_body_entered"]
+[connection signal="body_shape_entered" from="bar_show_collider" to="." method="_on_bar_show_collider_body_shape_entered"]

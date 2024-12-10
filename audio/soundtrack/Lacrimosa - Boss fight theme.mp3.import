@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://l3sakgusw0lm"
+path="res://.godot/imported/Lacrimosa - Boss fight theme.mp3-bd957a04e4bb8b801516f6a33c2521ff.mp3str"
+
+[deps]
+
+source_file="res://audio/soundtrack/Lacrimosa - Boss fight theme.mp3"
+dest_files=["res://.godot/imported/Lacrimosa - Boss fight theme.mp3-bd957a04e4bb8b801516f6a33c2521ff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

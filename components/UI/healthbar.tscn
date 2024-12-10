@@ -42,7 +42,6 @@ offset_bottom = 27.0
 scale = Vector2(0.999998, 0.994367)
 theme_override_styles/background = SubResource("StyleBoxEmpty_7j4w8")
 theme_override_styles/fill = SubResource("StyleBoxFlat_s6eci")
-value = 60.0
 show_percentage = false
 script = ExtResource("1_noejg")
 
@@ -56,7 +55,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_3bwo7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_t0fx4")
-value = 90.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]

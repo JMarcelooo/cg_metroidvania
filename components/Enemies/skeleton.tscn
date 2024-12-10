@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://wtk6wqnowy56"]
+[gd_scene load_steps=14 format=3 uid="uid://wtk6wqnowy56"]
 
 [ext_resource type="Script" path="res://scripts/Enemies/Skeleton/skeleton.gd" id="1_k2pc5"]
 [ext_resource type="Texture2D" uid="uid://dv53y0s5rqkis" path="res://sprites/Skeleton/Skeleton enemy.png" id="2_d8ak8"]
+[ext_resource type="AudioStream" uid="uid://dyddo5owe2pna" path="res://audio/sound_effects/skeleton_dying.mp3" id="3_0d42h"]
+[ext_resource type="AudioStream" uid="uid://dy1wrwcwqs2r2" path="res://audio/sound_effects/skeleton_attack.mp3" id="3_gxjtg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgq1h"]
 size = Vector2(28.5714, 34.2857)
@@ -12,8 +14,8 @@ size = Vector2(28.5714, 34.2857)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_606uo"]
 size = Vector2(21.4286, 40)
 
-[sub_resource type="Animation" id="Animation_x2c86"]
-resource_name = "atack"
+[sub_resource type="Animation" id="Animation_jave2"]
+resource_name = "Dead"
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -25,24 +27,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 10, 11, 12]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Atack/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5, 0.6, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, true, false, false, true, true]
+"values": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 }
 
-[sub_resource type="Animation" id="Animation_q7y5l"]
-resource_name = "Walk"
-length = 1.2
+[sub_resource type="Animation" id="Animation_kogg6"]
+resource_name = "Idle"
+length = 1.1
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -52,10 +42,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [27, 26, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
+"values": [39, 40, 41, 42]
 }
 
 [sub_resource type="Animation" id="Animation_r2q3h"]
@@ -85,9 +75,9 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_kogg6"]
-resource_name = "Idle"
-length = 1.1
+[sub_resource type="Animation" id="Animation_q7y5l"]
+resource_name = "Walk"
+length = 1.2
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -97,14 +87,14 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [39, 40, 41, 42]
+"values": [27, 26, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
 }
 
-[sub_resource type="Animation" id="Animation_jave2"]
-resource_name = "Dead"
+[sub_resource type="Animation" id="Animation_x2c86"]
+resource_name = "atack"
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -116,7 +106,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+"values": [0, 1, 2, 3, 4, 5, 6, 10, 11, 12]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Atack/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.6, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, false, false, true, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j41cr"]
@@ -136,7 +138,6 @@ script = ExtResource("1_k2pc5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.13687e-13, -22.8571)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_fgq1h")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -145,7 +146,6 @@ collision_mask = 44
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-2.04359e-06, -22.8571)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_gpxib")
 
 [node name="Timer" type="Timer" parent="."]
@@ -154,7 +154,6 @@ shape = SubResource("RectangleShape2D_gpxib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Atack"]
 position = Vector2(27.8571, -27.1429)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_606uo")
 disabled = true
 
@@ -175,6 +174,13 @@ texture = ExtResource("2_d8ak8")
 hframes = 13
 vframes = 5
 frame = 26
+
+[node name="dying_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0d42h")
+volume_db = -4.57
+
+[node name="attack_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gxjtg")
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
